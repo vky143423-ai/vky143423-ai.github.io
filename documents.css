@@ -1,0 +1,238 @@
+/* ============================================================
+   DOCUMENTS & CERTIFICATES — CSS
+   ============================================================
+   Link this file in your <head>:
+     <link rel="stylesheet" href="documents.css">
+   or paste its contents into your existing styles.css.
+
+   Namespaced with .docs- / .cert- / .lightbox- so it won't
+   clash with your current styles. Tweak the variables in
+   .docs-section to match your site's real theme colors.
+   ============================================================ */
+
+.docs-section {
+  --docs-bg: #0b0e14;
+  --docs-panel: #11161f;
+  --docs-border: rgba(255, 255, 255, 0.08);
+  --docs-text: #e6ecf5;
+  --docs-muted: #8b95a7;
+  --docs-accent: #3ddc97;
+
+  padding: 6rem 1.5rem;
+  background: var(--docs-bg);
+  color: var(--docs-text);
+  font-family: inherit;
+}
+
+.docs-container {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.docs-kicker {
+  color: var(--docs-accent);
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+}
+
+.docs-heading {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.docs-sub {
+  color: var(--docs-muted);
+  max-width: 60ch;
+  line-height: 1.6;
+  margin: 0 0 2.5rem;
+}
+
+/* ---- Resume card ---- */
+.resume-card {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  background: var(--docs-panel);
+  border: 1px solid var(--docs-border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.resume-card-icon {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(61, 220, 151, 0.08);
+  color: var(--docs-accent);
+}
+
+.resume-card-body { flex: 1 1 220px; }
+.resume-card-body h3 { margin: 0 0 0.2rem; font-size: 1.05rem; }
+.resume-card-body p { margin: 0; color: var(--docs-muted); font-size: 0.9rem; }
+
+.resume-card-actions { display: flex; gap: 0.6rem; flex: 0 0 auto; }
+
+.btn-doc {
+  font-family: inherit;
+  font-size: 0.88rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  border: 1px solid var(--docs-border);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.btn-doc-primary {
+  background: var(--docs-accent);
+  color: #06110c;
+  border-color: var(--docs-accent);
+  font-weight: 600;
+}
+.btn-doc-primary:hover { filter: brightness(1.08); }
+
+.btn-doc-ghost { color: var(--docs-text); background: transparent; }
+.btn-doc-ghost:hover { border-color: var(--docs-accent); color: var(--docs-accent); }
+
+/* ---- Gallery grid ---- */
+.docs-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.1rem;
+}
+
+.cert-tile {
+  position: relative;
+  background: var(--docs-panel);
+  border: 1px solid var(--docs-border);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+}
+
+.cert-tile:focus-visible {
+  outline: 2px solid var(--docs-accent);
+  outline-offset: 2px;
+}
+
+.cert-thumb-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #0c1119;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cert-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cert-thumb-wrap.is-pdf { color: var(--docs-muted); }
+.cert-thumb-wrap.is-pdf svg { opacity: 0.6; }
+
+.cert-meta { padding: 0.85rem 1rem 1rem; }
+.cert-meta h4 { margin: 0 0 0.15rem; font-size: 0.95rem; color: var(--docs-text); }
+.cert-meta p { margin: 0; font-size: 0.8rem; color: var(--docs-muted); }
+
+.cert-tile-empty {
+  grid-column: 1 / -1;
+  color: var(--docs-muted);
+  font-size: 0.9rem;
+  padding: 2rem 0;
+  text-align: center;
+  border: 1px dashed var(--docs-border);
+  border-radius: 10px;
+}
+
+/* ---- Lightbox ---- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+}
+.lightbox[data-open="true"] { display: block; }
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 6, 10, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+.lightbox-panel {
+  position: relative;
+  z-index: 1;
+  max-width: min(90vw, 900px);
+  max-height: 88vh;
+  margin: 6vh auto;
+  background: #0c1119;
+  border: 1px solid var(--docs-border, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  background: transparent;
+  border: none;
+  color: #e6ecf5;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.lightbox-media {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  overflow: auto;
+}
+
+.lightbox-media img { max-width: 100%; max-height: 78vh; border-radius: 6px; }
+.lightbox-media iframe {
+  width: 78vw;
+  max-width: 820px;
+  height: 78vh;
+  border: none;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.lightbox-caption {
+  color: #8b95a7;
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox-panel { animation: docsFadeUp 0.18s ease; }
+}
+@keyframes docsFadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

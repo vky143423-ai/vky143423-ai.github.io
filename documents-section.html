@@ -1,0 +1,58 @@
+<!--
+  ============================================================
+  DOCUMENTS & CERTIFICATES — HTML ONLY
+  ============================================================
+  Paste this block into your index.html, right after your
+  Certifications section (before Contact works well).
+
+  Requires:
+    - styles.css   → add documents.css rules to your CSS file (or link separately)
+    - script.js    → add documents.js logic to your JS file (or link separately)
+
+  See documents.css and documents.js for the matching styles/logic.
+  ============================================================
+-->
+
+<section id="documents" class="docs-section">
+  <div class="docs-container">
+
+    <p class="docs-kicker">12 — Documents</p>
+    <h2 class="docs-heading">Resume &amp; certificates</h2>
+    <p class="docs-sub">My resume and verified credentials, viewable directly here — no downloads required to check them out.</p>
+
+    <!-- ===================== RESUME CARD ===================== -->
+    <div class="resume-card">
+      <div class="resume-card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+          <path d="M14 3v5h5"/>
+          <path d="M9 13h6M9 16.5h6M9 9.5h2.5"/>
+        </svg>
+      </div>
+      <div class="resume-card-body">
+        <h3>Eerla Vamshi Krishna — Resume</h3>
+        <p>Updated 2026 · PDF</p>
+      </div>
+      <div class="resume-card-actions">
+        <button class="btn-doc btn-doc-primary" data-view="resume.pdf" data-type="pdf" data-title="Resume">View</button>
+        <a class="btn-doc btn-doc-ghost" href="resume.pdf" download>Download</a>
+      </div>
+    </div>
+
+    <!-- ===================== CERTIFICATE GALLERY ===================== -->
+    <div class="docs-gallery" id="certGallery">
+      <!-- tiles injected by documents.js from the DOCS array -->
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== LIGHTBOX (shared) ===================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="lightbox-backdrop" data-close></div>
+  <div class="lightbox-panel">
+    <button class="lightbox-close" data-close aria-label="Close">&times;</button>
+    <div class="lightbox-media" id="lightboxMedia"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
